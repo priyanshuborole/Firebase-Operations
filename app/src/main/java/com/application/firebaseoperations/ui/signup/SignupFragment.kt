@@ -2,10 +2,10 @@ package com.application.firebaseoperations.ui.signup
 
 import android.app.Dialog
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -26,9 +26,9 @@ class SignupFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View{
+    ): View {
         // Inflate the layout for this fragment
-        binding = FragmentSignupBinding.inflate(inflater,container,false)
+        binding = FragmentSignupBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -39,11 +39,11 @@ class SignupFragment : Fragment() {
         val firebaseAuthSource = FirebaseAuthSource()
         val authRepository = AuthRepository(firebaseAuthSource)
         val viewModelFactory = SignupViewModelFactory(authRepository)
-        val signupViewModel = ViewModelProvider(this,viewModelFactory)[SignupViewModel::class.java]
+        val signupViewModel = ViewModelProvider(this, viewModelFactory)[SignupViewModel::class.java]
 
         lifecycleScope.launch {
-            signupViewModel.signupResult.observe(viewLifecycleOwner){ result ->
-                when(result){
+            signupViewModel.signupResult.observe(viewLifecycleOwner) { result ->
+                when (result) {
                     is AuthState.Loading -> {
                         progressDialog?.show()
                     }
@@ -60,10 +60,10 @@ class SignupFragment : Fragment() {
         }
 
         binding.btnSignup.setOnClickListener {
-            val email : String = binding.inputEmail.text.toString()
-            val password : String = binding.inputPassword.text.toString()
-            val confirmPassword : String = binding.inputConfirmPassword.text.toString()
-            signupViewModel.signupWithEmail(email,password,confirmPassword)
+            val email: String = binding.inputEmail.text.toString()
+            val password: String = binding.inputPassword.text.toString()
+            val confirmPassword: String = binding.inputConfirmPassword.text.toString()
+            signupViewModel.signupWithEmail(email, password, confirmPassword)
         }
 
         binding.linkLogin.setOnClickListener {
@@ -74,6 +74,7 @@ class SignupFragment : Fragment() {
     private fun navigateToLogin() {
         findNavController().navigate(R.id.action_signupFragment_to_loginFragment)
     }
+
     private fun navigateToHome() {
         findNavController().navigate(R.id.action_signupFragment_to_homeFragment)
     }

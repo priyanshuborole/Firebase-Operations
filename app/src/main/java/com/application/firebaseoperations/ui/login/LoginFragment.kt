@@ -2,10 +2,10 @@ package com.application.firebaseoperations.ui.login
 
 import android.app.Dialog
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -13,8 +13,6 @@ import com.application.firebaseoperations.R
 import com.application.firebaseoperations.data.auth.FirebaseAuthSource
 import com.application.firebaseoperations.databinding.FragmentLoginBinding
 import com.application.firebaseoperations.repository.auth.AuthRepository
-import com.application.firebaseoperations.ui.signup.SignupViewModel
-import com.application.firebaseoperations.ui.signup.SignupViewModelFactory
 import com.application.firebaseoperations.utils.AuthState
 import com.application.firebaseoperations.utils.progressDialog
 import com.application.firebaseoperations.utils.toast
@@ -23,7 +21,7 @@ import kotlinx.coroutines.launch
 class LoginFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginBinding
-    private var progressDialog : Dialog? = null
+    private var progressDialog: Dialog? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,11 +39,11 @@ class LoginFragment : Fragment() {
         val firebaseAuthSource = FirebaseAuthSource()
         val authRepository = AuthRepository(firebaseAuthSource)
         val viewModelFactory = LoginViewModelFactory(authRepository)
-        val loginViewModel = ViewModelProvider(this,viewModelFactory)[LoginViewModel::class.java]
+        val loginViewModel = ViewModelProvider(this, viewModelFactory)[LoginViewModel::class.java]
 
         lifecycleScope.launch {
-            loginViewModel.loginResult.observe(viewLifecycleOwner){ result ->
-                when(result){
+            loginViewModel.loginResult.observe(viewLifecycleOwner) { result ->
+                when (result) {
                     is AuthState.Loading -> {
                         progressDialog?.show()
                     }
@@ -62,9 +60,9 @@ class LoginFragment : Fragment() {
         }
 
         binding.btnLogin.setOnClickListener {
-            val email : String = binding.inputEmail.text.toString()
-            val password : String = binding.inputPassword.text.toString()
-            loginViewModel.loginWithEmail(email,password)
+            val email: String = binding.inputEmail.text.toString()
+            val password: String = binding.inputPassword.text.toString()
+            loginViewModel.loginWithEmail(email, password)
         }
 
         binding.linkSignup.setOnClickListener {

@@ -8,10 +8,12 @@ class AuthRepository(
     private val firebaseAuthSource: FirebaseAuthSource
 ) {
 
-    suspend fun loginWithEmail(email:String,password:String):AuthState<FirebaseUser> = firebaseAuthSource.loginWithEmail(email, password)
+    suspend fun loginWithEmail(email: String, password: String): AuthState<FirebaseUser> =
+        firebaseAuthSource.loginWithEmail(email, password)
 
-    suspend fun signUpWithEmail(email:String,password:String):AuthState<FirebaseUser> = firebaseAuthSource.signupWithEmail(email, password)
+    suspend fun signUpWithEmail(email: String, password: String): AuthState<FirebaseUser> =
+        firebaseAuthSource.signupWithEmail(email, password)
 
-    suspend fun currentUser(): FirebaseUser? = firebaseAuthSource.currentUser()
+    fun currentUser(): FirebaseUser? = firebaseAuthSource.currentUser()
 
 }
