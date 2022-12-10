@@ -1,6 +1,7 @@
 package com.application.firebaseoperations.data.auth
 
 import com.application.firebaseoperations.utils.AuthState
+import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.tasks.await
@@ -21,7 +22,13 @@ class FirebaseAuthSource {
         return AuthState.Success(result.user!!)
     }
 
+    suspend fun signInWithGoogle(googleAuthCredential: AuthCredential) : AuthState<FirebaseUser>{
+        val result = firebaseAuth.signInWithCredential(googleAuthCredential).await()
+        return AuthState.Success(result.user!!)
+    }
+
     fun currentUser(): FirebaseUser? {
         return firebaseAuth.currentUser
     }
+
 }

@@ -92,6 +92,23 @@
             android:text="Already a member? Login"
             android:textSize="16sp" />
 
+<!--        <View-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="1dp"-->
+<!--            android:layout_marginVertical="10dp"-->
+<!--            android:background="#676767"/>-->
+
+<!--        <androidx.appcompat.widget.AppCompatButton-->
+<!--            android:id="@+id/btn_google"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginBottom="24dp"-->
+<!--            android:layout_marginTop="24dp"-->
+<!--            android:padding="10dp"-->
+<!--            android:drawablePadding="5dp"-->
+<!--            android:drawableStart="@drawable/ic_google"-->
+<!--            android:text="Google" />-->
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

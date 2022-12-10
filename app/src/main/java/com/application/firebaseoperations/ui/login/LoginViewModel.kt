@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.application.firebaseoperations.repository.auth.AuthRepository
 import com.application.firebaseoperations.utils.AuthState
+import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.*
 
@@ -38,4 +39,17 @@ class LoginViewModel(
 
         }
     }
+
+    fun signInWithGoogle(googleAuthCredential: AuthCredential){
+        loginResult.value = AuthState.Loading(null)
+        viewModelScope.launch(exceptionHandler) {
+            supervisorScope {
+                val loginGoogle = withContext(Dispatchers.IO){
+                    authRepository.signInWithGoogle(googleAuthCredential)
+                }
+                loginResult.value = loginGoogle
+            }
+        }
+    }
+
 }
